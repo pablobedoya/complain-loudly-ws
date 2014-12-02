@@ -6,7 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
-import com.zetauma.complainloudly.ws.model.Complaint;
+import com.zetauma.complainloudly.ws.controller.ComplaintController;
 
 @Path("/complaint")
 public class ComplaintResource {
@@ -14,8 +14,7 @@ public class ComplaintResource {
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getComplaint() {
-		Complaint complaint = new Complaint("user", "image", "commentary", 1.000, 1.000);
 		Gson gson = new Gson();
-		return gson.toJson(complaint);
+		return gson.toJson(new ComplaintController().list());
 	}
 }
