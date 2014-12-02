@@ -28,6 +28,19 @@ public class ConnectionFactory {
 		
 		return connection;
 	}
+	
+	public void closeConnection(Connection connection, PreparedStatement preparedStatement) {
+		try {
+			if (connection != null) {
+				connection.close();
+			}
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void closeConnection(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
 		try {

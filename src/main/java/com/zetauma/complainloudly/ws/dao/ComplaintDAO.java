@@ -18,6 +18,33 @@ public class ComplaintDAO extends ConnectionFactory {
 			instance = new ComplaintDAO();
 		return instance;
 	}
+	
+	public boolean create(Complaint complaint) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		boolean hasErrors = false;
+		
+		connection = openConnection();
+		
+		try {
+			preparedStatement = connection.prepareStatement("INSERT INTO complaint (user, image, commentary, latitude, longitude) VALUES(?, ?, ?, ?, ?)");
+			
+			preparedStatement.setString(1, complaint.getUser());
+			preparedStatement.setString(2, complaint.getImage());
+			preparedStatement.setString(3, complaint.getCommentary());
+			preparedStatement.setFloat(4, (float) complaint.getLatitude());
+			preparedStatement.setFloat(5, (float) complaint.getLongitude());
+			
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			hasErrors = true;
+		} finally {
+			closeConnection(connection, preparedStatement);
+		}
+		
+		return hasErrors;
+	}
 
 	public List<Complaint> list() {
 		Connection connection = null;
