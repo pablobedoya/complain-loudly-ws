@@ -62,6 +62,7 @@ public class ComplaintDAO extends ConnectionFactory {
 			while (resultSet.next()) {
 				Complaint complaint = new Complaint();
 				
+				complaint.setId(resultSet.getInt("id"));
 				complaint.setUser(resultSet.getString("user"));
 				complaint.setImage(resultSet.getString("image"));
 				complaint.setCommentary(resultSet.getString("commentary"));

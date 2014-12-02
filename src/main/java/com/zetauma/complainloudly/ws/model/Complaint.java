@@ -1,6 +1,7 @@
 package com.zetauma.complainloudly.ws.model;
 
 public class Complaint {
+	private int id;
 	private String user;
 	private String image;
 	private String commentary;
@@ -16,6 +17,14 @@ public class Complaint {
 		this.commentary = commentary;
 		this.latitude = latitude;
 		this.longitude = longitude;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUser() {
